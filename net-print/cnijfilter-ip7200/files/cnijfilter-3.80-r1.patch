@@ -1,6 +1,6 @@
 diff -ru cnijfilter-source-3.80-1/backend/src/cnij_backend_common.c cnijfilter-source/backend/src/cnij_backend_common.c
 --- cnijfilter-source-3.80-1/backend/src/cnij_backend_common.c	2012-03-29 06:50:27.000000000 +0200
-+++ cnijfilter-source/backend/src/cnij_backend_common.c	2017-09-29 22:20:33.789975275 +0200
++++ cnijfilter-source/backend/src/cnij_backend_common.c	2017-10-01 18:15:58.739928638 +0200
 @@ -38,6 +38,7 @@
  // CUPS Header
  #include <cups/cups.h>
@@ -11,7 +11,7 @@ diff -ru cnijfilter-source-3.80-1/backend/src/cnij_backend_common.c cnijfilter-s
  #include "cnij_backend_common.h"
 diff -ru cnijfilter-source-3.80-1/backend/src/Makefile.am cnijfilter-source/backend/src/Makefile.am
 --- cnijfilter-source-3.80-1/backend/src/Makefile.am	2012-03-29 06:50:27.000000000 +0200
-+++ cnijfilter-source/backend/src/Makefile.am	2017-09-24 21:55:25.669956463 +0200
++++ cnijfilter-source/backend/src/Makefile.am	2017-10-01 18:15:58.729928638 +0200
 @@ -1,6 +1,6 @@
  ## Process this file with automake to produce Makefile.in
  
@@ -22,7 +22,7 @@ diff -ru cnijfilter-source-3.80-1/backend/src/Makefile.am cnijfilter-source/back
  
 diff -ru cnijfilter-source-3.80-1/backendnet/backend/cnijnetlm.c cnijfilter-source/backendnet/backend/cnijnetlm.c
 --- cnijfilter-source-3.80-1/backendnet/backend/cnijnetlm.c	2012-03-29 06:50:28.000000000 +0200
-+++ cnijfilter-source/backendnet/backend/cnijnetlm.c	2017-09-24 21:55:37.239956426 +0200
++++ cnijfilter-source/backendnet/backend/cnijnetlm.c	2017-10-01 18:15:58.759928638 +0200
 @@ -249,10 +249,9 @@
  	
  	if	( g_pid > 0 ) {				/* if child process has started....	*/
@@ -51,7 +51,7 @@ diff -ru cnijfilter-source-3.80-1/backendnet/backend/cnijnetlm.c cnijfilter-sour
  				fseek(tempfp, read_position, SEEK_SET);
 diff -ru cnijfilter-source-3.80-1/backendnet/backend/Makefile.am cnijfilter-source/backendnet/backend/Makefile.am
 --- cnijfilter-source-3.80-1/backendnet/backend/Makefile.am	2012-03-29 06:50:28.000000000 +0200
-+++ cnijfilter-source/backendnet/backend/Makefile.am	2017-09-24 21:55:25.689956463 +0200
++++ cnijfilter-source/backendnet/backend/Makefile.am	2017-10-01 18:15:58.749928638 +0200
 @@ -1,6 +1,6 @@
  ## Process this file with automake to produce Makefile.in
  
@@ -62,7 +62,7 @@ diff -ru cnijfilter-source-3.80-1/backendnet/backend/Makefile.am cnijfilter-sour
  
 diff -ru cnijfilter-source-3.80-1/backendnet/lmonitor/cnijnetchk.c cnijfilter-source/backendnet/lmonitor/cnijnetchk.c
 --- cnijfilter-source-3.80-1/backendnet/lmonitor/cnijnetchk.c	2012-07-03 02:20:08.000000000 +0200
-+++ cnijfilter-source/backendnet/lmonitor/cnijnetchk.c	2017-09-24 21:55:37.239956426 +0200
++++ cnijfilter-source/backendnet/lmonitor/cnijnetchk.c	2017-10-01 18:15:58.779928638 +0200
 @@ -328,14 +328,12 @@
  static int getStatusCode(const char *src, const char *key, const char *val, const int index){
  	int i, j, start=-1;
@@ -80,7 +80,7 @@ diff -ru cnijfilter-source-3.80-1/backendnet/lmonitor/cnijnetchk.c cnijfilter-so
  	len = strlen(buf);
 diff -ru cnijfilter-source-3.80-1/cngpij/cngpij/bjcups.c cnijfilter-source/cngpij/cngpij/bjcups.c
 --- cnijfilter-source-3.80-1/cngpij/cngpij/bjcups.c	2012-04-17 05:39:20.000000000 +0200
-+++ cnijfilter-source/cngpij/cngpij/bjcups.c	2017-09-29 22:14:27.449976437 +0200
++++ cnijfilter-source/cngpij/cngpij/bjcups.c	2017-10-01 18:15:58.799928638 +0200
 @@ -685,8 +685,8 @@
  					*pResponse;					// Pointer to CUPS IPP response.
  	ipp_attribute_t	*pAttribute;				// Pointer to CUPS attributes.
@@ -152,9 +152,107 @@ diff -ru cnijfilter-source-3.80-1/cngpij/cngpij/bjcups.c cnijfilter-source/cngpi
  				}
  			}
  			
+diff -ru cnijfilter-source-3.80-1/cngpij/cngpij/getipc.c cnijfilter-source/cngpij/cngpij/getipc.c
+--- cnijfilter-source-3.80-1/cngpij/cngpij/getipc.c	2012-03-29 06:50:26.000000000 +0200
++++ cnijfilter-source/cngpij/cngpij/getipc.c	2017-10-04 19:08:26.679990345 +0200
+@@ -40,7 +40,7 @@
+ 	int server_fd;
+ 	int client_fd;
+ 	char buf[128];
+-	size_t len;
++	socklen_t len;
+ 	short ret = RET_ERROR;
+ 
+ 	if( (server_fd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0 )
+diff -ru cnijfilter-source-3.80-1/cngpijmnt/src/getipc.c cnijfilter-source/cngpijmnt/src/getipc.c
+--- cnijfilter-source-3.80-1/cngpijmnt/src/getipc.c	2012-03-29 06:50:26.000000000 +0200
++++ cnijfilter-source/cngpijmnt/src/getipc.c	2017-10-04 19:19:27.689988248 +0200
+@@ -42,7 +42,7 @@
+ 	int server_fd;
+ 	int client_fd;
+ 	char buf[128];
+-	size_t len;
++	socklen_t len;
+ 	short ret = RET_ERROR;
+ 
+ 	if( (server_fd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0 )
+diff -ru cnijfilter-source-3.80-1/cngpijmnt/src/main.c cnijfilter-source/cngpijmnt/src/main.c
+--- cnijfilter-source-3.80-1/cngpijmnt/src/main.c	2012-04-26 11:49:34.000000000 +0200
++++ cnijfilter-source/cngpijmnt/src/main.c	2017-10-04 19:26:22.749986932 +0200
+@@ -308,8 +308,8 @@
+ 					*pResponse;					// Pointer to CUPS IPP response.
+ 	ipp_attribute_t	*pAttribute;				// Pointer to CUPS attributes.
+ 	cups_lang_t		*pLanguage;					// Pointer to language.
+-	char			*pPrinter = NULL;			// Pointer to printer name.
+-	char			*pDUri = NULL;				// Pointer to Device uri.
++	const char		*pPrinter = NULL;			// Pointer to printer name.
++	const char		*pDUri = NULL;				// Pointer to Device uri.
+ 	short			retVal = -1;	// Return value.
+ /*** Parameters end ***/
+ 	
+@@ -321,8 +321,8 @@
+ 	else {
+ 		pRequest = ippNew();
+ 		
+-		pRequest->request.op.operation_id = CUPS_GET_PRINTERS;
+-		pRequest->request.op.request_id   = 1;
++		ippSetOperation(pRequest, CUPS_GET_PRINTERS);
++		ippSetRequestId(pRequest, 1);
+ 		
+ 		pLanguage = bjcupsLangDefault();	// cupsLangDefault() -> bjcupsLangDefault() for cups-1.1.19
+ 		
+@@ -331,29 +331,29 @@
+ 		ippAddString(pRequest, IPP_TAG_OPERATION, IPP_TAG_URI, "printer-uri", NULL, NULL);
+ 		
+ 		if ((pResponse = cupsDoRequest(pHTTP, pRequest, "/")) != NULL) {
+-			if (pResponse->request.status.status_code > IPP_OK_CONFLICT) {
++			if (ippGetStatusCode(pResponse) > IPP_OK_CONFLICT) {
+ 				fputs("ERROR: IPP ERROR\n", stderr);
+ 				goto onErr;
+ 			}
+ 			else {
+-				pAttribute = pResponse->attrs;
++				pAttribute = ippFirstAttribute(pResponse);
+ 
+ 				while (pAttribute != NULL) {
+-					while (pAttribute != NULL && pAttribute->group_tag != IPP_TAG_PRINTER) {
+-						pAttribute = pAttribute->next;
++					while (pAttribute != NULL && ippGetGroupTag(pAttribute) != IPP_TAG_PRINTER) {
++						pAttribute = ippNextAttribute(pResponse);
+ 					}
+ 					if (pAttribute == NULL) {
+ 						break;
+ 					}
+ 					
+-					while (pAttribute != NULL && pAttribute->group_tag == IPP_TAG_PRINTER) {
+-						if (strcmp(pAttribute->name, "printer-name") == 0 && pAttribute->value_tag == IPP_TAG_NAME) {
+-							pPrinter = pAttribute->values[0].string.text;
++					while (pAttribute != NULL && ippGetGroupTag(pAttribute) == IPP_TAG_PRINTER) {
++						if (strcmp(ippGetName(pAttribute), "printer-name") == 0 && ippGetValueTag(pAttribute) == IPP_TAG_NAME) {
++							pPrinter = ippGetString(pAttribute, 0, NULL);
+ 						}
+-						if (strcmp(pAttribute->name, "device-uri") == 0 && pAttribute->value_tag == IPP_TAG_URI) {
+-							pDUri = pAttribute->values[0].string.text;
++						if (strcmp(ippGetName(pAttribute), "device-uri") == 0 && ippGetValueTag(pAttribute) == IPP_TAG_URI) {
++							pDUri = ippGetString(pAttribute, 0, NULL);
+ 						}
+-						pAttribute = pAttribute->next;
++						pAttribute = ippNextAttribute(pResponse);
+ 					}
+ 
+ 					if (strcasecmp(pDestName, pPrinter) == 0) {
+@@ -362,7 +362,7 @@
+ 					}
+ 					
+ 					if (pAttribute != NULL)
+-						 pAttribute = pAttribute->next;
++						pAttribute = ippNextAttribute(pResponse);
+ 				}
+ 			}
+ 			
 diff -ru cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_cups.c cnijfilter-source/cngpijmon/src/bjcupsmon_cups.c
 --- cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_cups.c	2012-05-22 11:49:27.000000000 +0200
-+++ cnijfilter-source/cngpijmon/src/bjcupsmon_cups.c	2017-09-29 23:08:55.619966073 +0200
++++ cnijfilter-source/cngpijmon/src/bjcupsmon_cups.c	2017-10-04 19:17:29.239988624 +0200
 @@ -215,8 +215,8 @@
  	else {
  		pRequest = ippNew();
@@ -230,6 +328,15 @@ diff -ru cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_cups.c cnijfilter-sour
  						retVal = ID_ERR_CUPS_API_FAILED;
  					}
  					ippDelete(pResponse);
+@@ -420,7 +420,7 @@
+ 	cups_lang_t		*pLanguage;								// Pointer to language.
+ 	ipp_jstate_t	jobState = 0;							// Job state.
+ 	gint			jobID = 0;								// Job ID.
+-	gchar			*pJobUserName = NULL;					// User name of print job.
++	const gchar			*pJobUserName = NULL;					// User name of print job.
+ 	uid_t			userID;									// User ID.
+ 	struct passwd	*pPasswd;								// Pointer to password structure.
+ 	gint			retVal = ID_ERR_PRINT_JOB_NOT_EXIST;	// Return value.
 @@ -444,8 +444,8 @@
  	else {
  		pRequest = ippNew();
@@ -436,7 +543,7 @@ diff -ru cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_cups.c cnijfilter-sour
  			
 diff -ru cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_main.c cnijfilter-source/cngpijmon/src/bjcupsmon_main.c
 --- cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_main.c	2012-03-27 03:36:03.000000000 +0200
-+++ cnijfilter-source/cngpijmon/src/bjcupsmon_main.c	2017-09-29 23:08:55.619966073 +0200
++++ cnijfilter-source/cngpijmon/src/bjcupsmon_main.c	2017-10-01 18:15:59.049928637 +0200
 @@ -371,14 +371,10 @@
  	} /* parents process */
  	else {
@@ -486,9 +593,20 @@ diff -ru cnijfilter-source-3.80-1/cngpijmon/src/bjcupsmon_main.c cnijfilter-sour
  				}
  				/* read( 0, buf, sizeof(buf)); */
  
+diff -ru cnijfilter-source-3.80-1/cnijfilter/src/bjfilter.c cnijfilter-source/cnijfilter/src/bjfilter.c
+--- cnijfilter-source-3.80-1/cnijfilter/src/bjfilter.c	2012-03-29 03:22:47.000000000 +0200
++++ cnijfilter-source/cnijfilter/src/bjfilter.c	2017-10-04 19:15:55.149988922 +0200
+@@ -29,6 +29,7 @@
+ #include <popt.h>
+ #include <time.h>
+ #include <string.h>
++#include <ctype.h>
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ #include <sys/wait.h>
 diff -ru cnijfilter-source-3.80-1/cnijfilter/src/bjfimage.c cnijfilter-source/cnijfilter/src/bjfimage.c
 --- cnijfilter-source-3.80-1/cnijfilter/src/bjfimage.c	2012-03-22 02:50:19.000000000 +0100
-+++ cnijfilter-source/cnijfilter/src/bjfimage.c	2017-09-29 23:08:55.619966073 +0200
++++ cnijfilter-source/cnijfilter/src/bjfimage.c	2017-10-01 18:15:59.079928637 +0200
 @@ -39,6 +39,8 @@
  
  #include <stdio.h>
@@ -527,13 +645,36 @@ diff -ru cnijfilter-source-3.80-1/cnijfilter/src/bjfimage.c cnijfilter-source/cn
  	              &color_type, &interlace_type, NULL, NULL);
  
  	/* not support Interlace */
+diff -ru cnijfilter-source-3.80-1/cnijfilter/src/bjfoption.c cnijfilter-source/cnijfilter/src/bjfoption.c
+--- cnijfilter-source-3.80-1/cnijfilter/src/bjfoption.c	2012-06-05 08:29:03.000000000 +0200
++++ cnijfilter-source/cnijfilter/src/bjfoption.c	2017-10-04 19:15:00.369989096 +0200
+@@ -28,6 +28,7 @@
+ #include <stdlib.h>
+ #include <popt.h>
+ #include <string.h>
++#include <ctype.h>
+ 
+ #include "cncl.h"
+ #include "cncldef.h"
+diff -ru cnijfilter-source-3.80-1/cnijfilter/src/getipc.c cnijfilter-source/cnijfilter/src/getipc.c
+--- cnijfilter-source-3.80-1/cnijfilter/src/getipc.c	2012-03-22 02:50:19.000000000 +0100
++++ cnijfilter-source/cnijfilter/src/getipc.c	2017-10-04 19:13:27.549989391 +0200
+@@ -43,7 +43,7 @@
+ 	struct sockaddr_un		sun;
+ 	int						s, c;
+ 	char					buf[128];
+-	size_t					adrlen;
++	socklen_t					adrlen;
+ 	short					ret = RET_ERROR;
+ 
+ 	if ((s = socket(PF_UNIX, SOCK_STREAM, 0)) < 0)
 Seulement dans cnijfilter-source: .git
 Seulement dans cnijfilter-source: .gitignore
 Seulement dans cnijfilter-source: patch.sh
 Seulement dans cnijfilter-source: .project
 diff -ru cnijfilter-source-3.80-1/pstocanonij/filter/Makefile.am cnijfilter-source/pstocanonij/filter/Makefile.am
 --- cnijfilter-source-3.80-1/pstocanonij/filter/Makefile.am	2012-03-29 06:50:26.000000000 +0200
-+++ cnijfilter-source/pstocanonij/filter/Makefile.am	2017-09-24 21:55:25.749956463 +0200
++++ cnijfilter-source/pstocanonij/filter/Makefile.am	2017-10-01 18:15:59.099928637 +0200
 @@ -1,4 +1,4 @@
 -filterdir=$(libdir)/cups/filter
 +filterdir=$(libexecdir)/cups/filter
@@ -542,7 +683,7 @@ diff -ru cnijfilter-source-3.80-1/pstocanonij/filter/Makefile.am cnijfilter-sour
  
 diff -ru cnijfilter-source-3.80-1/pstocanonij/filter/pstocanonij.c cnijfilter-source/pstocanonij/filter/pstocanonij.c
 --- cnijfilter-source-3.80-1/pstocanonij/filter/pstocanonij.c	2012-06-26 01:55:26.000000000 +0200
-+++ cnijfilter-source/pstocanonij/filter/pstocanonij.c	2017-09-24 21:55:37.239956426 +0200
++++ cnijfilter-source/pstocanonij/filter/pstocanonij.c	2017-10-01 18:15:59.109928637 +0200
 @@ -388,7 +388,7 @@
  			{
  				if( !IS_BLANK(*p_code)  )
