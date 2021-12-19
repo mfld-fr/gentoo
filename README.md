@@ -1,4 +1,4 @@
-#WHAT'S THAT?
+## WHAT'S THAT?
 
 This is my `mfld` Gentoo overlay.
 
@@ -6,7 +6,7 @@ It contains currently a custom version of the `cnijfilter` packages (Canon Pixma
 
 Thanks to the [@Sabayon](https://github.com/sabayon) project where I sourced initially the packages, and to [@tokiclover](https://github.com/tokiclover) (maintainer of the Bar overlay) who has been supporting the Canon printer topic for several years now.
 
-#WHAT'S NOW & NEXT ?
+## WHAT'S NOW & NEXT ?
 
 * **BUG**: after moving to Gentoo profile 17.1, the configuration files should be installed not anymore in `/usr/lib64`, but in `/usr/lib`, especially the `cnijlib` folder and `bilib` symbolic link. Tune the `ebuild` accordingly.
 
