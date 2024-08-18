@@ -19,7 +19,7 @@ IUSE="+net +servicetools"
 RDEPEND="
 	>=media-libs/libpng-1.5:0=
 	>=media-libs/tiff-3.4:0=
-	>=net-print/cups-1.4
+	>=net-print/cups-1.6
 	servicetools? (
 		>=dev-libs/libxml2-2.7.3-r2
 		>=x11-libs/gtk+-2.6:2
@@ -34,12 +34,7 @@ S="${WORKDIR}/${MY_P}"
 # Patches from bug #130645
 
 PATCHES=(
-	"${FILESDIR}/cnijfilter-3.70-png.patch"
-	"${FILESDIR}/cnijfilter-3.70-ppd.patch"
-	"${FILESDIR}/cnijfilter-3.70-ppd2.patch"
-	"${FILESDIR}/cnijfilter-3.70-libexec-cups.patch"
-	"${FILESDIR}/cnijfilter-3.70-libexec-backend.patch"
-	"${FILESDIR}/cnijfilter-3.80-cups1.6.patch"
+	"${FILESDIR}/cnijfilter-3.80-r1.patch"
 	)
 
 pkg_setup() {
@@ -68,8 +63,13 @@ src_configure() {
 	local d
 	for d in "${DIRS[@]}"; do
 		pushd "${d}" >/dev/null || die
-		# progpath must be set otherwise defaulted to /usr/local/bin
-		econf --enable-progpath="${EPREFIX}/usr/bin"
+		# no progpath option for libs directory
+		if [[ ${d} == libs ]]; then
+			econf
+			else
+			# progpath must be set otherwise defaulted to /usr/local/bin
+			econf --enable-progpath="${EPREFIX}/usr/bin"
+			fi
 		popd >/dev/null || die
 	done
 }

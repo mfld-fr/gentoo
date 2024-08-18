@@ -20,7 +20,7 @@ RDEPEND="
 	>=net-print/cnijfilter-common-3.80[servicetools?]
 	>=media-libs/libpng-1.5:0=
 	>=media-libs/tiff-3.4:0=
-	>=net-print/cups-1.4
+	>=net-print/cups-1.6
 	servicetools? (
 		>=dev-libs/libxml2-2.7.3-r2
 		>=x11-libs/gtk+-2.6:2
@@ -38,12 +38,7 @@ PRINTER_NAME="ip7200"
 # patches from bug #130645
 
 PATCHES=(
-	"${FILESDIR}/cnijfilter-3.70-png.patch"
-	"${FILESDIR}/cnijfilter-3.70-ppd.patch"
-	"${FILESDIR}/cnijfilter-3.70-ppd2.patch"
-	"${FILESDIR}/cnijfilter-3.70-libexec-cups.patch"
-	"${FILESDIR}/cnijfilter-3.70-libexec-backend.patch"
-	"${FILESDIR}/cnijfilter-3.80-cups.patch"
+	"${FILESDIR}/cnijfilter-3.80-r1.patch"
 	)
 
 pkg_setup() {
