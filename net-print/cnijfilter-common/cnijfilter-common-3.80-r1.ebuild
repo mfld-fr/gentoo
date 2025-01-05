@@ -1,15 +1,15 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit autotools
 
-MY_P="cnijfilter-source-${PV}-1"
+MY_P="cnijfilter-source-master"
 
 DESCRIPTION="CUPS drivers for Canon Pixma inkjet printers (common part)"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Canon_Pixma_Printer"
-SRC_URI="http://gdlp01.c-wss.com/gds/3/0100004693/01/${MY_P}.tar.gz"
+SRC_URI="https://github.com/mfld-fr/cnijfilter-source/archive/refs/heads/master.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -31,12 +31,6 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-# Patches from bug #130645
-
-PATCHES=(
-	"${FILESDIR}/cnijfilter-3.80-r1.patch"
-	)
-
 pkg_setup() {
 	[[ -z ${LINGUAS} ]] && LINGUAS="en"
 
@@ -48,7 +42,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# apply patches
 	default
 
 	local d

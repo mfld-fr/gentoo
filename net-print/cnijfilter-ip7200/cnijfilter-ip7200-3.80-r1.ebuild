@@ -1,15 +1,15 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit autotools
 
-MY_P="cnijfilter-source-${PV}-1"
+MY_P="cnijfilter-source-master"
 
 DESCRIPTION="CUPS drivers for Canon Pixma inkjet printers (printer specific part)"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Canon_Pixma_Printer"
-SRC_URI="http://gdlp01.c-wss.com/gds/3/0100004693/01/${MY_P}.tar.gz"
+SRC_URI="https://github.com/mfld-fr/cnijfilter-source/archive/refs/heads/master.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -35,12 +35,6 @@ S="${WORKDIR}/${MY_P}"
 PRINTER_ID="406"
 PRINTER_NAME="ip7200"
 
-# patches from bug #130645
-
-PATCHES=(
-	"${FILESDIR}/cnijfilter-3.80-r1.patch"
-	)
-
 pkg_setup() {
 	[[ -z ${LINGUAS} ]] && LINGUAS="en"
 
@@ -56,7 +50,6 @@ src_prepare() {
 	# missing macros directory make aclocal fail
 	mkdir maintenance/m4 || die
 
-	# apply patches
 	default
 
 	local d

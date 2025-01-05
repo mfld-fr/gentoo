@@ -8,8 +8,8 @@ Thanks to the [@Sabayon](https://github.com/sabayon) project where I initially s
 
 ## WHAT'S NOW & NEXT ?
 
-* Current release is `r3.80-1`, that is based on the original 3.80-1 sources from Canon, plus some patches sourced from several other projects (see above), plus some fixes in an effort to reduce the number of the compilation warnings.
+* Last release is `r3.80-1`, that is based on the original 3.80-1 sources from Canon, plus some patches sourced from several other projects (see above), plus some fixes in an effort to reduce the number of the compilation warnings.
+
+* Current master is the future `r3.80-2`, that downloads the 3.80 patched sources from GitHub, rather than from some obscure Canon server, and allows to drop completely the patching process.
 
 * **BUG**: after moving to Gentoo profile 17.1, the configuration files should be installed not anymore in `/usr/lib64`, but in `/usr/lib`, especially the `cnijlib` folder and `bilib` symbolic link.
-
-* The next release `r3.80-2` would download the patched sources from GitHub, rather than from some obscure Canon server, and would allow to remove completely the patch file.
